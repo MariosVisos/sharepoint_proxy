@@ -19,7 +19,7 @@ COPY pysrc pysrc
 COPY requirements requirements
 COPY requirements.txt requirements.txt
 
-# RUN pip-sync requirements/development.txt
+RUN pip-sync requirements/development.txt
 
 # RUN pip install -e pydeps/ds4.auth/pysrc
 RUN pip install -e pysrc

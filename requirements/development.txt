@@ -21,7 +21,9 @@ charset-normalizer==2.0.12
     #   -r requirements/production.txt
     #   requests
 click==8.0.4
-    # via black
+    # via
+    #   -r requirements/development.in
+    #   black
 cryptography==37.0.4
     # via
     #   -r requirements/production.txt

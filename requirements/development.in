@@ -1,3 +1,4 @@
 -r testing.in
 black
+click
 rope
