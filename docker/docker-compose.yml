@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  ds4.sharepoint:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+
+    networks:
+      - datashare
+
+    image: mpd/ds4/ds4.sharepoint:0.0.1
+
+    volumes:
+      - ..:/opt/ds4.sharepoint:cached
+
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+    environment:
+      TZ: Europe/Zurich
+
+networks:
+  datashare:
+    external:
+      name: datashare
