@@ -28,6 +28,8 @@ pytz==2022.1
     # via o365
 pytz-deprecation-shim==0.1.0.post0
     # via tzlocal
+pyyaml==6.0
+    # via -r requirements/production.in
 requests==2.27.1
     # via
     #   o365

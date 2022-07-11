@@ -80,6 +80,8 @@ pytz-deprecation-shim==0.1.0.post0
     # via
     #   -r requirements/production.txt
     #   tzlocal
+pyyaml==6.0
+    # via -r requirements/production.txt
 requests==2.27.1
     # via
     #   -r requirements/production.txt
