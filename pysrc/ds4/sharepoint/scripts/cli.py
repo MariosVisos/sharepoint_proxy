@@ -1,4 +1,6 @@
 import click
+from ds4.sharepoint import config
+from ds4.sharepoint.auth import authenticate
 from ds4.sharepoint.scripts.folders import create_folder, read_folders
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
@@ -9,16 +11,19 @@ def cli():
     pass
 
 
-cli.add_command(create_folder)
-cli.add_command(read_folders)
+# cli.add_command(create_folder)
+# cli.add_command(read_folders)
 
 
 @cli.command()
-@click.option("-s", "--string", default="World", help="String used after hello")
-@click.option("-r", "--repeat", default=1, help="How many times to repeat")
-@click.argument("out", type=click.File("w"), default="-", required="false")
-def say(string, repeat, out):
-    """Read a string"""
-    for _ in range(repeat):
-        # click.echo(f"Hello {string}", file=out)
-        click.echo(f"Hello {string}")
+@click.option("-i", "--client_id", help="APP (Client) ID")
+@click.option("-s", "--secret", help="Client secret value of the application")
+def oauth(client_id, secret):
+    """Authenticate to SharePoint"""
+    config.init()
+
+    account = authenticate(client_id, secret)
+    if account is not None:
+        print("Authenticated!")
+    else:
+        print("Authentication failed!")
