@@ -6,16 +6,21 @@
 #
 attrs==21.4.0
     # via pytest
+backports.zoneinfo==0.2.1
+    # via
+    #   -r requirements/production.txt
+    #   pytz-deprecation-shim
+    #   tzlocal
+beautifulsoup4==4.11.1
+    # via
+    #   -r requirements/production.txt
+    #   o365
 black==22.6.0
     # via -r requirements/development.in
 certifi==2022.6.15
     # via
     #   -r requirements/production.txt
     #   requests
-cffi==1.15.1
-    # via
-    #   -r requirements/production.txt
-    #   cryptography
 charset-normalizer==2.0.12
     # via
     #   -r requirements/production.txt
@@ -24,11 +29,6 @@ click==8.0.4
     # via
     #   -r requirements/development.in
     #   black
-cryptography==37.0.4
-    # via
-    #   -r requirements/production.txt
-    #   msal
-    #   pyjwt
 dataclasses==0.8
     # via black
 idna==3.3
@@ -40,16 +40,20 @@ importlib-metadata==4.8.3
     #   click
     #   pluggy
     #   pytest
-iniconfig==1.1.1
-    # via pytest
-msal==1.18.0
+importlib-resources==5.4.0
     # via
     #   -r requirements/production.txt
-    #   office365-rest-python-client
+    #   backports.zoneinfo
+iniconfig==1.1.1
+    # via pytest
 mypy-extensions==0.4.3
     # via black
-office365-rest-python-client==2.3.13
+o365==2.0.19
     # via -r requirements/production.txt
+oauthlib==3.2.0
+    # via
+    #   -r requirements/production.txt
+    #   requests-oauthlib
 packaging==21.3
     # via pytest
 pathspec==0.9.0
@@ -60,29 +64,45 @@ pluggy==1.0.0
     # via pytest
 py==1.11.0
     # via pytest
-pycparser==2.21
-    # via
-    #   -r requirements/production.txt
-    #   cffi
-pyjwt[crypto]==2.4.0
-    # via
-    #   -r requirements/production.txt
-    #   msal
 pyparsing==3.0.9
     # via packaging
 pytest==7.0.1
     # via -r requirements/testing.in
+python-dateutil==2.8.2
+    # via
+    #   -r requirements/production.txt
+    #   o365
 pytz==2022.1
     # via
     #   -r requirements/production.txt
-    #   office365-rest-python-client
+    #   o365
+pytz-deprecation-shim==0.1.0.post0
+    # via
+    #   -r requirements/production.txt
+    #   tzlocal
 requests==2.27.1
     # via
     #   -r requirements/production.txt
-    #   msal
-    #   office365-rest-python-client
+    #   o365
+    #   requests-oauthlib
+requests-oauthlib==1.3.1
+    # via
+    #   -r requirements/production.txt
+    #   o365
 rope==1.1.1
     # via -r requirements/development.in
+six==1.16.0
+    # via
+    #   -r requirements/production.txt
+    #   python-dateutil
+soupsieve==2.3.2.post1
+    # via
+    #   -r requirements/production.txt
+    #   beautifulsoup4
+stringcase==1.2.0
+    # via
+    #   -r requirements/production.txt
+    #   o365
 tomli==1.2.3
     # via
     #   black
@@ -93,9 +113,20 @@ typing-extensions==4.1.1
     # via
     #   black
     #   importlib-metadata
-urllib3==1.26.9
+tzdata==2022.1
+    # via
+    #   -r requirements/production.txt
+    #   pytz-deprecation-shim
+tzlocal==4.2
+    # via
+    #   -r requirements/production.txt
+    #   o365
+urllib3==1.26.10
     # via
     #   -r requirements/production.txt
     #   requests
 zipp==3.6.0
-    # via importlib-metadata
+    # via
+    #   -r requirements/production.txt
+    #   importlib-metadata
+    #   importlib-resources
