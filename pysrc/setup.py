@@ -8,6 +8,6 @@ setup(
         # internal
         # "ds4.auth",
         # external
-        "Office365-REST-Python-Client",
+        "O365",
     ],
 )
