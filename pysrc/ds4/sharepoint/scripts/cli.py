@@ -4,6 +4,7 @@ from ds4.sharepoint.scripts.folders import create_folder, read_folders
 from ds4.sharepoint.scripts.sites import (
     get_all_sites,
     get_document_libraries,
+    get_document_library,
     get_site,
     search_site,
 )
@@ -23,3 +24,4 @@ cli.add_command(search_site)
 cli.add_command(get_all_sites)
 cli.add_command(get_site)
 cli.add_command(get_document_libraries)
+cli.add_command(get_document_library)
