@@ -9,9 +9,12 @@ TOKEN_PATH = "o365_token"
 TOKEN_FILENAME = "token.txt"
 
 #  scopes
+#  scope helpers
+#  https://github.com/O365/python-o365/blob/master/O365/connection.py#L34
 # 'basic' adds: 'offline_access' and 'https://graph.microsoft.com/User.Read'
 # 'sharepoint' adds: 'https://graph.microsoft.com/Sites.Read.All'
-scopes = ["basic", "sharepoint"]
+# 'sharepoint_dl' adds: 'https://graph.microsoft.com/Sites.ReadWrite.All'
+scopes = ["basic", "sharepoint", "sharepoint_dl"]
 
 
 def build_credentials(
