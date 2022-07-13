@@ -6,6 +6,7 @@ from ds4.sharepoint.scripts.document_libraries import (
     get_document_library_items,
 )
 from ds4.sharepoint.scripts.drive_items import (
+    download_file,
     get_item,
     get_items_in_folder,
     upload_file,
@@ -33,3 +34,4 @@ cli.add_command(get_document_library_items)
 cli.add_command(get_item)
 cli.add_command(get_items_in_folder)
 cli.add_command(upload_file)
+cli.add_command(download_file)

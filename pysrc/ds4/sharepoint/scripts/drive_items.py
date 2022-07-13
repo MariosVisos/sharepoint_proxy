@@ -97,3 +97,36 @@ def upload_file(
     click.echo(f"Result upload.name: {result.name}")
     versions = result.get_versions()
     print("result.get_versions(): ", versions)
+
+
+@click.command()
+@click.argument("item_id")
+@click.argument("document_library_id")
+@click.argument("host_name")
+@click.argument("site_collection_id")
+@click.argument("site_id")
+def download_file(
+    item_id: str,
+    document_library_id: str,
+    host_name: str,
+    site_collection_id: str,
+    site_id: str,
+):
+    """Download a drive(document_library) item"""
+    config.init()
+    click.echo("Download a drive(document_library) item")
+    site = read_site(host_name, site_collection_id, site_id)
+    if site is None:
+        click.echo("Site not found")
+        return
+    document_library = site.get_document_library(document_library_id)
+    item = document_library.get_item(item_id)
+    if not item.is_file:
+        click.echo(f"Item is not a file: {item}")
+        return
+    click.echo(f"Downloading file: {item}")
+    # open io object to write to
+    with open("download.jpg", "wb") as f:
+        # download the file to the io object
+        item.download(output=f)
+    click.echo(f"Downloaded file: {item}")
