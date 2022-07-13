@@ -5,6 +5,7 @@ from ds4.sharepoint.scripts.document_libraries import (
     get_document_library,
     get_document_library_items,
 )
+from ds4.sharepoint.scripts.drive_items import get_item
 from ds4.sharepoint.scripts.folders import create_folder, read_folders
 from ds4.sharepoint.scripts.sites import get_all_sites, get_site, search_site
 
@@ -25,3 +26,4 @@ cli.add_command(get_site)
 cli.add_command(get_document_libraries)
 cli.add_command(get_document_library)
 cli.add_command(get_document_library_items)
+cli.add_command(get_item)
