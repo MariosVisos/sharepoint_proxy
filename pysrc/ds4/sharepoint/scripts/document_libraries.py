@@ -36,3 +36,23 @@ def get_document_library(
         return
     result = site.get_document_library(document_library_id)
     click.echo(f"Result document library: {result}")
+
+
+@click.command()
+@click.argument("document_library_id")
+@click.argument("host_name")
+@click.argument("site_collection_id")
+@click.argument("site_id")
+def get_document_library_items(
+    document_library_id: str, host_name: str, site_collection_id: str, site_id: str
+):
+    """Get a collection of drive(document_library) items from the root folder"""
+    config.init()
+    click.echo("Get SharePoint document library")
+    site = read_site(host_name, site_collection_id, site_id)
+    if site is None:
+        click.echo("Site not found")
+        return
+    result = site.get_document_library(document_library_id)
+    result = list(result.get_items())
+    click.echo(f"Result document library items from the root folder: {result}")
