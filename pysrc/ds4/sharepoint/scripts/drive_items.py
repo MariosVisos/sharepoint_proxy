@@ -43,35 +43,16 @@ def get_items_in_folder(
 @click.command()
 @click.argument("file")
 @click.argument("folder_id")
-@click.argument("document_library_id")
-@click.argument("host_name")
-@click.argument("site_collection_id")
-@click.argument("site_id")
+@click.argument("drive_id")
 def upload_file(
     file: str,
     folder_id: str,
-    document_library_id: str,
-    host_name: str,
-    site_collection_id: str,
-    site_id: str,
+    drive_id: str,
 ):
     """Upload a file to a drive(document_library) folder"""
     config.init()
     click.echo("Upload a file to a drive(document_library) folder")
-    site = read_site(host_name, site_collection_id, site_id)
-    if site is None:
-        click.echo("Site not found")
-        return
-    document_library = site.get_document_library(document_library_id)
-    folder = document_library.get_item(folder_id)
-    if not folder.is_folder:
-        click.echo(f"Item is not a folder: {folder}")
-        return
-    click.echo(f"Uploading file: {file}")
-    #  conflict_handling: How to handle conflicts.
-    #  NOTE: works for chunk upload only (>4MB or upload_in_chunks is True)
-    #  None to use default (overwrite). Options: fail | replace | rename
-    result = folder.upload_file(file, conflict_handling="fail", upload_in_chunks=False)
+    result = upload_file_to_folder(file, folder_id, drive_id)
     click.echo(f"Result upload: {result}")
     click.echo(f"Result upload.object_id: {result.object_id}")
     click.echo(f"Result upload.name: {result.name}")
