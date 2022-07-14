@@ -25,10 +25,7 @@ def get_item(
 @click.command()
 @click.argument("folder_id")
 @click.argument("drive_id")
-def get_items_in_folder(
-    folder_id: str,
-    drive_id: str,
-):
+def get_items_in_folder(folder_id: str, drive_id: str):
     """Get a collection of drive(document_library) items from the folder"""
     config.init()
     click.echo("Get SharePoint document library items from the folder")
@@ -44,11 +41,7 @@ def get_items_in_folder(
 @click.argument("file")
 @click.argument("folder_id")
 @click.argument("drive_id")
-def upload_file(
-    file: str,
-    folder_id: str,
-    drive_id: str,
-):
+def upload_file(file: str, folder_id: str, drive_id: str):
     """Upload a file to a drive(document_library) folder"""
     config.init()
     click.echo("Upload a file to a drive(document_library) folder")
@@ -62,32 +55,10 @@ def upload_file(
 
 @click.command()
 @click.argument("item_id")
-@click.argument("document_library_id")
-@click.argument("host_name")
-@click.argument("site_collection_id")
-@click.argument("site_id")
-def download_file(
-    item_id: str,
-    document_library_id: str,
-    host_name: str,
-    site_collection_id: str,
-    site_id: str,
-):
-    """Download a drive(document_library) item"""
+@click.argument("drive_id")
+def download_file(item_id: str, drive_id: str):
+    """Download a file"""
     config.init()
-    click.echo("Download a drive(document_library) item")
-    site = read_site(host_name, site_collection_id, site_id)
-    if site is None:
-        click.echo("Site not found")
-        return
-    document_library = site.get_document_library(document_library_id)
-    item = document_library.get_item(item_id)
-    if not item.is_file:
-        click.echo(f"Item is not a file: {item}")
-        return
-    click.echo(f"Downloading file: {item}")
-    # open io object to write to
-    with open("download.jpg", "wb") as f:
-        # download the file to the io object
-        item.download(output=f)
-    click.echo(f"Downloaded file: {item}")
+    click.echo("Download a file")
+    download_file_item(item_id, drive_id)
+    click.echo(f"File downloaded")
