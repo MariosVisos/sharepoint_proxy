@@ -1,5 +1,5 @@
 from ds4.sharepoint.auth import get_account
-from O365.drive import Drive, Folder
+from O365.drive import Drive, File, Folder
 
 
 def get_drive_item(item_id: str, drive_id: str):
@@ -61,3 +61,23 @@ def upload_file_to_folder(file: str, folder_id: str, drive_id: str):
         file, conflict_handling="replace", upload_in_chunks=False
     )
     return result
+
+
+def download_file_item(item_id: str, drive_id: str):
+    """Download an item"""
+    account = get_account()
+    if not account.is_authenticated:
+        raise Exception("Not authenticated")
+    storage = account.storage()
+    drive = Drive(
+        con=storage.con,
+        protocol=storage.protocol,
+        main_resource=storage.main_resource,
+        **{storage._cloud_data_key: {"id": drive_id}},
+    )
+    file = File(parent=drive, **{drive._cloud_data_key: {"id": item_id}})
+
+    with open("download.jpg", "wb") as f:
+        # download the file to the io object
+        file.download(output=f)
+    return file

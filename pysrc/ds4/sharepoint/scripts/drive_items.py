@@ -1,20 +1,17 @@
 import click
 from ds4.sharepoint import config
 from ds4.sharepoint.drive_items import (
+    download_file_item,
     get_drive_item,
     get_items_from_folder,
     upload_file_to_folder,
 )
-from ds4.sharepoint.sites.sites import read_site
 
 
 @click.command()
 @click.argument("item_id")
 @click.argument("drive_id")
-def get_item(
-    item_id: str,
-    drive_id: str,
-):
+def get_item(item_id: str, drive_id: str):
     """Get a drive(document_library) item by item ID"""
     config.init()
     click.echo("Get SharePoint document library")
